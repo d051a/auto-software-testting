@@ -1,0 +1,1 @@
+lessons for software-testing.ru course 
