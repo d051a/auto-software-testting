@@ -30,16 +30,4 @@ def test_admin_panel_left_menu_items_h1_exists(driver, login_admin):
                 assert are_elements_present(driver, By.XPATH, "//h1") is True
 
 
-def test_good_item_sticker_exist(driver, login_customer):
-    goods_category1_link_locator = "//li[@class='category-1']"
-    goods_list_locator = "//li[@class='product column shadow hover-light']"
-    sticker_locator = ".//div[contains(@class, 'sticker')]"
-
-    goods_category1_link = driver.find_element(By.XPATH, goods_category1_link_locator)
-    goods_category1_link.click()
-    goods_list = driver.find_elements(By.XPATH, goods_list_locator)
-    for good in goods_list:
-        assert are_element_present(good, By.XPATH, sticker_locator) is True
-
-
 
