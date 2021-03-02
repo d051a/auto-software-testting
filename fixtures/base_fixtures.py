@@ -7,8 +7,9 @@ from config import LITECART_BASE_URL, ADMIN_LOGIN, ADMIN_PASSWORD, USER_LOGIN, U
 
 @pytest.fixture
 def driver(request):
-    driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
+    # driver = webdriver.Chrome()
+    driver = webdriver.Firefox()
+    # driver.implicitly_wait(5)
     yield driver
     request.addfinalizer(driver.quit)
 

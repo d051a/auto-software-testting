@@ -5,3 +5,4 @@ cromedriver
 Jenkinsfile
 .idea
 .idea/*
+geckodriver.log
