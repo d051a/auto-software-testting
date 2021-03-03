@@ -28,7 +28,7 @@ def test_good_page_compare(driver):
     assert Color.from_string(good_regular_price_color) == Color.from_string('rgba(119, 119, 119, 1)')
     assert good_regular_price_line_through == 'line-through'
     assert Color.from_string(good_campaign_price_color) == Color.from_string('rgba(204, 0, 0, 1)')
-    assert good_campaign_price_font_weight == 'bold' or good_campaign_price_font_weight >= '1700'
+    assert good_campaign_price_font_weight == 'bold' or int(good_campaign_price_font_weight) >= 700
     assert good_campaign_price_font_size > good_regular_price_font_size
 
     first_good.click()
@@ -52,7 +52,7 @@ def test_good_page_compare(driver):
     assert Color.from_string(good_page_regular_price_color) == Color.from_string('rgba(102, 102, 102, 1)')
     assert good_page_regular_price_line_through == 'line-through'
     assert Color.from_string(good_page_campaign_price_color) == Color.from_string('rgba(204, 0, 0, 1)')
-    assert good_page_campaign_price_font_weight == 'bold' or good_page_campaign_price_font_weight >= '1700'
+    assert good_page_campaign_price_font_weight == 'bold' or int(good_page_campaign_price_font_weight) >= 700
     assert good_page_campaign_price_font_size > good_page_regular_price_font_size
 
 
