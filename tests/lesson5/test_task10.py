@@ -18,10 +18,10 @@ def test_good_page_compare(driver):
     good_campaign_price = first_good.find_element(By.XPATH, good_campaign_price_locator)
     good_regular_price_line_through = good_regular_price.value_of_css_property("text-decoration-line")
     good_regular_price_color = good_regular_price.value_of_css_property("color")
-    good_regular_price_font_size = good_regular_price.value_of_css_property("font-size")
+    good_regular_price_font_size = str(good_regular_price.value_of_css_property("font-size")).replace('px', '')
     good_campaign_price_font_weight = good_campaign_price.value_of_css_property("font-weight")
     good_campaign_price_color = good_campaign_price.value_of_css_property("color")
-    good_campaign_price_font_size = good_campaign_price.value_of_css_property("font-size")
+    good_campaign_price_font_size = str(good_campaign_price.value_of_css_property("font-size")).replace('px', '')
     good_regular_price = good_regular_price.text
     good_campaign_price = good_campaign_price.text
 
@@ -29,7 +29,7 @@ def test_good_page_compare(driver):
     assert good_regular_price_line_through == 'line-through'
     assert Color.from_string(good_campaign_price_color) == Color.from_string('rgba(204, 0, 0, 1)')
     assert good_campaign_price_font_weight == 'bold' or int(good_campaign_price_font_weight) >= 700
-    assert good_campaign_price_font_size > good_regular_price_font_size
+    assert float(good_campaign_price_font_size) > float(good_regular_price_font_size)
 
     first_good.click()
 
@@ -39,11 +39,10 @@ def test_good_page_compare(driver):
     good_page_campaign_price = driver.find_element(By.XPATH, good_campaign_price_locator)
     good_page_regular_price_line_through = good_page_regular_price.value_of_css_property("text-decoration-line")
     good_page_regular_price_color = good_page_regular_price.value_of_css_property("color")
-    good_page_regular_price_font_size = good_page_regular_price.value_of_css_property("font-size")
+    good_page_regular_price_font_size = str(good_page_regular_price.value_of_css_property("font-size")).replace('px', '')
     good_page_campaign_price_font_weight = good_page_campaign_price.value_of_css_property("font-weight")
     good_page_campaign_price_color = good_page_campaign_price.value_of_css_property("color")
-    good_page_campaign_price_font_size = good_page_campaign_price.value_of_css_property("font-size")
-
+    good_page_campaign_price_font_size = str(good_page_campaign_price.value_of_css_property("font-size")).replace('px', '')
 
     assert good_name == good_page_good_name
     assert good_regular_price == good_page_regular_price.text
@@ -53,7 +52,7 @@ def test_good_page_compare(driver):
     assert good_page_regular_price_line_through == 'line-through'
     assert Color.from_string(good_page_campaign_price_color) == Color.from_string('rgba(204, 0, 0, 1)')
     assert good_page_campaign_price_font_weight == 'bold' or int(good_page_campaign_price_font_weight) >= 700
-    assert good_page_campaign_price_font_size > good_page_regular_price_font_size
+    assert float(good_page_campaign_price_font_size) > float(good_page_regular_price_font_size)
 
 
 
