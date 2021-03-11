@@ -33,10 +33,13 @@ def get_cart_items_quantity(driver):
 
 def remove_cart_item(driver):
     remove_button = driver.find_element(By.XPATH, "//button[@name='remove_cart_item']")
+    if driver.find_elements(By.XPATH, "//ul[@class='shortcuts']"):
+        driver.find_element(By.XPATH, "//ul/li[@class='shortcut']").click()
     removed_item_name = remove_button.find_element(By.XPATH, "./../..//strong").text
+    removable_item_in_table_locator = f"//div[@id='order_confirmation-wrapper']//td[@class='item' and contains(text(), '{removed_item_name}')]"
+    removable_item_in_table = driver.find_element(By.XPATH, removable_item_in_table_locator)
     remove_button.click()
-    removed_item_in_table_locator = f"//div[@id='order_confirmation-wrapper']//td[@class='item' and contains(text(), '{removed_item_name}')]"
-    WebDriverWait(driver, 10).until(EC.invisibility_of_element_located((By.XPATH, removed_item_in_table_locator)))
+    WebDriverWait(driver, 10).until(EC.staleness_of(removable_item_in_table))
 
 
 def get_order_summary_items(driver):
